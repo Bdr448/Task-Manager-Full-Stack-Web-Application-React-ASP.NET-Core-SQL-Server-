@@ -1,0 +1,37 @@
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #3730a3;
+  --bg-color: #f3f4f6;
+  --text-dark: #111827;
+  --text-light: #6b7280;
+  --error-bg: #fef2f2;
+  --error-text: #dc2626;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+}
+
+/* Better responsive typography */
+h1, h2, h3 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
