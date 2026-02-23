@@ -10,6 +10,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.3" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.4" />
+    <PackageReference Include="SS.DataCore" Version="1.1.0" />
+    <PackageReference Include="SS.LoggingCore" Version="1.0.0" />
+    <PackageReference Include="SS.InfraCore" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

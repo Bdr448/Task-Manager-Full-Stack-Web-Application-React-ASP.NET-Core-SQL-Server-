@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<AuthService>();
 
+
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -19,7 +21,7 @@ builder.Services.AddCors(options =>
 });
 
 var jwt = builder.Configuration.GetSection("Jwt");
-var key = Encoding.ASCII.GetBytes(jwt["Key"]);
+var key = Encoding.ASCII.GetBytes(jwt["Key"]!);
 builder.Services.AddScoped<TaskService>();
 
 builder.Services.AddAuthentication(options =>
