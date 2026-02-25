@@ -47,6 +47,28 @@ export async function getTasks() {
   return res.json();
 }
 
+export async function getTasksFiltered(filter) {
+  const res = await fetch(`${API_BASE}/task/filter`, {
+    method: "POST",
+    headers: authHeader(),
+    body: JSON.stringify(filter)
+  });
+
+  if (!res.ok) throw new Error("Failed to load tasks");
+
+  return res.json();
+}
+
+export async function getTaskStats() {
+  const res = await fetch(`${API_BASE}/task/stats`, {
+    headers: authHeader()
+  });
+
+  if (!res.ok) throw new Error("Failed to load stats");
+
+  return res.json();
+}
+
 export async function addTask(task) {
   const res = await fetch(`${API_BASE}/task`, {
     method: "POST",
@@ -55,6 +77,16 @@ export async function addTask(task) {
   });
 
   if (!res.ok) throw new Error("Add task failed");
+}
+
+export async function updateTask(id, task) {
+  const res = await fetch(`${API_BASE}/task/${id}`, {
+    method: "PUT",
+    headers: authHeader(),
+    body: JSON.stringify(task)
+  });
+
+  if (!res.ok) throw new Error("Update failed");
 }
 
 export async function deleteTask(id) {

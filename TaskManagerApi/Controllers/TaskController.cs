@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TaskManagerApi.Models;
 using TaskManagerApi.Services;
+using TaskManagerApi.DTOs;
 
 namespace TaskManagerApi.Controllers
 {
@@ -30,19 +31,26 @@ namespace TaskManagerApi.Controllers
 
             return _authService.GetUserId(username);
         }
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, TaskItem task)
-        {
-            _taskService.UpdateTask(id, task);
-            return Ok();
-        }
-
 
         [HttpGet]
         public IActionResult GetTasks()
         {
             var tasks = _taskService.GetTasks(CurrentUserId());
             return Ok(tasks);
+        }
+
+        [HttpPost("filter")]
+        public IActionResult GetTasksFiltered([FromBody] TaskFilterRequest filter)
+        {
+            var result = _taskService.GetTasksFiltered(CurrentUserId(), filter);
+            return Ok(result);
+        }
+
+        [HttpGet("stats")]
+        public IActionResult GetStats()
+        {
+            var stats = _taskService.GetTaskStats(CurrentUserId());
+            return Ok(stats);
         }
 
         [HttpPost]
@@ -52,6 +60,12 @@ namespace TaskManagerApi.Controllers
             return Ok(task);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, TaskItem task)
+        {
+            _taskService.UpdateTask(id, task);
+            return Ok();
+        }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
